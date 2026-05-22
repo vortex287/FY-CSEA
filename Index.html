@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Creative Contact Form</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #d9a7c7, #fffcdc);
+    text-align: center;
+    margin: 0;
+    padding: 40px;
+}
+
+h1{
+    color: #5a189a;
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+
+p{
+    color: #444;
+    font-size: 15px;
+}
+
+form{
+    background-color: rgba(255,255,255,0.95);
+    display: inline-block;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0px 8px 25px rgba(0,0,0,0.2);
+    border: 3px solid white;
+    animation: fadeIn 1s ease;
+}
+
+input, textarea{
+    margin: 8px;
+    padding: 12px;
+    width: 270px;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+    font-size: 14px;
+    transition: 0.3s;
+    font-family: 'Poppins', sans-serif;
+}
+
+textarea{
+    height: 100px;
+    resize: none;
+}
+
+input:focus, textarea:focus{
+    border-color: #9d4edd;
+    box-shadow: 0px 0px 8px #c77dff;
+    outline: none;
+    transform: scale(1.02);
+}
+
+button{
+    background: linear-gradient(to right, #7b2cbf, #c77dff);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+button:hover{
+    transform: scale(1.05);
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.circle1{
+    width: 120px;
+    height: 120px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 40px;
+}
+
+.circle2{
+    width: 180px;
+    height: 180px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+    right: 50px;
+}
+
+</style>
+
+<script>
+
+function checkForm(form)
+{
+
+    // Name Validation
+    if(form.username.value == "") 
+    {
+        alert("Error: Name cannot be blank!");
+        form.username.focus();
+        return false;
+    }
+
+    let re = /^[A-Za-z ]+$/;
+
+    if(!re.test(form.username.value)) 
+    {
+        alert("Error: Name must contain only letters!");
+        form.username.focus();
+        return false;
+    }
+
+    // Email Validation
+    if(form.email.value == "")
+    {
+        alert("Error: Email cannot be blank!");
+        form.email.focus();
+        return false;
+    }
+
+    if(!form.email.value.endsWith("@gmail.com"))
+    {
+        alert("Error: Email must end with @gmail.com");
+        form.email.focus();
+        return false;
+    }
+
+    // Phone Validation
+    if(form.phone.value == "")
+    {
+        alert("Error: Phone number cannot be blank!");
+        form.phone.focus();
+        return false;
+    }
+
+    let phoneRe = /^[0-9]{10}$/;
+
+    if(!phoneRe.test(form.phone.value))
+    {
+        alert("Error: Phone number must contain exactly 10 digits!");
+        form.phone.focus();
+        return false;
+    }
+
+    // Password Validation
+    if(form.password.value == "")
+    {
+        alert("Error: Password cannot be blank!");
+        form.password.focus();
+        return false;
+    }
+
+    if(form.password.value.length < 6)
+    {
+        alert("Error: Password must contain at least 6 characters!");
+        form.password.focus();
+        return false;
+    }
+
+    re = /[0-9]/;
+
+    if(!re.test(form.password.value))
+    {
+        alert("Error: Password must contain at least one number!");
+        form.password.focus();
+        return false;
+    }
+
+    re = /[a-z]/;
+
+    if(!re.test(form.password.value))
+    {
+        alert("Error: Password must contain at least one lowercase letter!");
+        form.password.focus();
+        return false;
+    }
+
+    re = /[A-Z]/;
+
+    if(!re.test(form.password.value))
+    {
+        alert("Error: Password must contain at least one uppercase letter!");
+        form.password.focus();
+        return false;
+    }
+
+    // Confirm Password Validation
+    if(form.confirmpassword.value == "")
+    {
+        alert("Error: Confirm Password cannot be blank!");
+        form.confirmpassword.focus();
+        return false;
+    }
+
+    if(form.password.value != form.confirmpassword.value)
+    {
+        alert("Error: Passwords do not match!");
+        form.confirmpassword.focus();
+        return false;
+    }
+
+    // Business Type Validation
+    if(form.businesstype.value == "")
+    {
+        alert("Error: Business type cannot be blank!");
+        form.businesstype.focus();
+        return false;
+    }
+
+    if(form.businesstype.value.length < 4)
+    {
+        alert("Error: Please enter a valid business type!");
+        form.businesstype.focus();
+        return false;
+    }
+
+    let businessRe = /^[A-Za-z ]+$/;
+
+    if(!businessRe.test(form.businesstype.value))
+    {
+        alert("Error: Business type must contain only letters!");
+        form.businesstype.focus();
+        return false;
+    }
+
+    // Message Validation
+    if(form.message.value == "")
+    {
+        alert("Error: Message cannot be empty!");
+        form.message.focus();
+        return false;
+    }
+
+    if(form.message.value.length < 10)
+    {
+        alert("Error: Message must contain at least 10 characters!");
+        form.message.focus();
+        return false;
+    }
+
+    alert("Message Sent Successfully!");
+    return true;
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="circle1"></div>
+<div class="circle2"></div>
+
+<h1>Contact Us ✨</h1>
+
+<p>We would love to hear from you!</p>
+
+<p>
+Please create your account and then fill out the form for the service you need.
+</p>
+
+<form onsubmit="return checkForm(this);">
+
+<p>Name</p>
+<input type="text" name="username" placeholder="Enter your name">
+
+<p>Email</p>
+<input type="email" name="email" placeholder="Enter your email">
+
+<p>Phone Number</p>
+<input type="text" name="phone" placeholder="Enter your 10-digit phone number">
+
+<p>Password</p>
+<input type="password" name="password" placeholder="Enter your password">
+
+<p>Confirm Password</p>
+<input type="password" name="confirmpassword" placeholder="Confirm your password">
+
+<p>Business Type Needed</p>
+<input type="text" name="businesstype"
+placeholder="Example: Electronics Shop, Software Company">
+
+<p>Message</p>
+<textarea name="message" placeholder="Write your message"></textarea>
+
+<br><br>
+
+<button type="submit">Send Message</button>
+
+</form>
+
+</body>
+</html>
